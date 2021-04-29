@@ -1,10 +1,11 @@
-package edu.ucsb.cs156.kitchensink.controllers;
+package edu.ucsb.cs156.happiercows.controllers;
 
-import edu.ucsb.cs156.kitchensink.entities.User;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import edu.ucsb.cs156.happiercows.entities.User;
 
 @RequestMapping("/api")
 @RestController

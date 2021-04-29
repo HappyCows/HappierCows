@@ -1,7 +1,5 @@
-package edu.ucsb.cs156.kitchensink.services;
+package edu.ucsb.cs156.happiercows.services;
 
-import edu.ucsb.cs156.kitchensink.entities.User;
-import edu.ucsb.cs156.kitchensink.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+
+import edu.ucsb.cs156.happiercows.entities.User;
+import edu.ucsb.cs156.happiercows.repositories.UserRepository;
 
 
 @Slf4j

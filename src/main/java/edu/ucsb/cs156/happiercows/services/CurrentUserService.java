@@ -1,9 +1,10 @@
-package edu.ucsb.cs156.kitchensink.services;
+package edu.ucsb.cs156.happiercows.services;
 
-import edu.ucsb.cs156.kitchensink.entities.User;
 import lombok.experimental.Delegate;
 
 import java.util.Map;
+
+import edu.ucsb.cs156.happiercows.entities.User;
 
 public abstract class CurrentUserService {
   public abstract User get();

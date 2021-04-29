@@ -1,8 +1,9 @@
-package edu.ucsb.cs156.kitchensink.controllers;
+package edu.ucsb.cs156.happiercows.controllers;
 
-import edu.ucsb.cs156.kitchensink.entities.User;
-import edu.ucsb.cs156.kitchensink.services.CurrentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import edu.ucsb.cs156.happiercows.entities.User;
+import edu.ucsb.cs156.happiercows.services.CurrentUserService;
 
 public abstract class ApiController {
   @Autowired

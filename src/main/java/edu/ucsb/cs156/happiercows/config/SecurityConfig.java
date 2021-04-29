@@ -1,4 +1,4 @@
-package edu.ucsb.cs156.kitchensink.config;
+package edu.ucsb.cs156.happiercows.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

@@ -8,10 +8,10 @@
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>edu.ucsb.cs156</groupId>
-    <artifactId>kitchensink</artifactId>
+    <artifactId>happiercows</artifactId>
     <version>1.0.0</version>
-    <name>kitchensink</name>
-    <description>Spring Boot + React Kitchen Sink</description>
+    <name>happiercows</name>
+    <description>Spring Boot + React Happier Cows</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -105,10 +105,10 @@
                 <version>0.8.6</version>
                 <configuration>
                     <excludes>
-                        <exclude>**/edu/ucsb/cs156/kitchensink/controllers/FrontendController.*</exclude>
-                        <exclude>**/edu/ucsb/cs156/kitchensink/controllers/FrontendProxyController.*</exclude>
-                        <exclude>**/edu/ucsb/cs156/kitchensink/services/CurrentUserServiceImpl.*</exclude>
-                        <exclude>**/edu/ucsb/cs156/kitchensink/KitchenSinkApplication.*</exclude>
+                        <exclude>**/edu/ucsb/cs156/happiercows/controllers/FrontendController.*</exclude>
+                        <exclude>**/edu/ucsb/cs156/happiercows/controllers/FrontendProxyController.*</exclude>
+                        <exclude>**/edu/ucsb/cs156/happiercows/services/CurrentUserServiceImpl.*</exclude>
+                        <exclude>**/edu/ucsb/cs156/happiercows/happiercowsApplication.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

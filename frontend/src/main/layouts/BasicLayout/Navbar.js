@@ -10,7 +10,7 @@ export default function Navbar() {
     <BootstrapNavbar expand="xl" variant="dark" bg="dark" sticky="top">
       <Container>
         <BootstrapNavbar.Brand as={Link} to="/">
-          Kitchen Sink
+          Happier Cows
         </BootstrapNavbar.Brand>
 
         <BootstrapNavbar.Toggle />
