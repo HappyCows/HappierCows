@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "main/pages/HomePage";
 import ProfilePage from "main/pages/ProfilePage";
+import SwaggerPage from "main/pages/SwaggerPage";
+
 import AdminUsersPage from "main/pages/AdminUsersPage";
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -19,6 +21,7 @@ function App() {
           {
             hasRole(currentUser, "ROLE_ADMIN") && <Route path="/admin/users" element={<AdminUsersPage />} />
           }
+          <Route path="/swagger" element={<SwaggerPage />} />
         </Routes>
       </BrowserRouter>
   );
