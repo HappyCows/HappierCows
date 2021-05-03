@@ -24,6 +24,6 @@ describe("Swagger component tests", () => {
     await waitFor(() =>
       expect(getAllByText(/Api Documentation/)[0]).toBeInTheDocument()
     );
-    expect(fetch.mock.calls[0][0]).toBe("/v2/api-docs");
+    expect(fetch.mock.calls[0][0]).toBe("/api/docs");
   });
 });
