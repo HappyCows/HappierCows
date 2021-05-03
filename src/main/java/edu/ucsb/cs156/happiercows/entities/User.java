@@ -1,13 +1,21 @@
 package edu.ucsb.cs156.happiercows.entities;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AccessLevel;
+import lombok.Builder;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -28,4 +36,10 @@ public class User {
   private String locale;
   private String hostedDomain;
   private boolean admin;
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "user_commons", 
+    joinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+  private List<Commons> commons;
 }
