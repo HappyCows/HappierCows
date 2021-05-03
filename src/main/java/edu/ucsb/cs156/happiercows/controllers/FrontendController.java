@@ -1,4 +1,4 @@
-package edu.ucsb.cs156.kitchensink.controllers;
+package edu.ucsb.cs156.happiercows.controllers;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
