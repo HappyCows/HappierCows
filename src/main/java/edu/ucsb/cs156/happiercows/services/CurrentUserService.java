@@ -1,11 +1,11 @@
-package edu.ucsb.cs156.kitchensink.services;
-
-import edu.ucsb.cs156.kitchensink.entities.User;
-import edu.ucsb.cs156.kitchensink.models.CurrentUser;
+package edu.ucsb.cs156.happiercows.services;
 
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+
+import edu.ucsb.cs156.happiercows.entities.User;
+import edu.ucsb.cs156.happiercows.models.CurrentUser;
 
 public abstract class CurrentUserService {
   public abstract User getUser();

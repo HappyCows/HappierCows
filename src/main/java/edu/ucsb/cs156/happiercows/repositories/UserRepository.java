@@ -1,8 +1,9 @@
-package edu.ucsb.cs156.kitchensink.repositories;
+package edu.ucsb.cs156.happiercows.repositories;
 
-import edu.ucsb.cs156.kitchensink.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import edu.ucsb.cs156.happiercows.entities.User;
 
 import java.util.Optional;
 

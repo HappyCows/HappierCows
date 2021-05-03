@@ -1,4 +1,4 @@
-package edu.ucsb.cs156.kitchensink.services;
+package edu.ucsb.cs156.happiercows.services;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,9 +8,9 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-
-import edu.ucsb.cs156.kitchensink.ControllerTestCase;
-import edu.ucsb.cs156.kitchensink.entities.User;
+import edu.ucsb.cs156.happiercows.ControllerTestCase;
+import edu.ucsb.cs156.happiercows.entities.User;
+import edu.ucsb.cs156.happiercows.services.CurrentUserService;
 
 class CurrentUserServiceTests extends ControllerTestCase {
 
