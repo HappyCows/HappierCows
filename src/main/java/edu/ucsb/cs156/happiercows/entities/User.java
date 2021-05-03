@@ -1,4 +1,4 @@
-package edu.ucsb.cs156.kitchensink.entities;
+package edu.ucsb.cs156.happiercows.entities;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
