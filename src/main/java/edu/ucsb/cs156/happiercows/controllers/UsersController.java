@@ -1,6 +1,5 @@
 package edu.ucsb.cs156.happiercows.controllers;
 
-import javax.transaction.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,7 +19,6 @@ import io.swagger.annotations.ApiOperation;
 @Api(description="User information (admin only)")
 @RequestMapping("/api/admin/users")
 @RestController
-@Transactional
 public class UsersController extends ApiController {
     @Autowired
     UserRepository userRepository;

@@ -21,7 +21,7 @@ public class Commons {
   private long id;  
   private String name;
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinTable(name = "user_commons", 
     joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
     inverseJoinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"))
