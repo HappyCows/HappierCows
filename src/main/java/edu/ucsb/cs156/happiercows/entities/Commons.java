@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Builder;
 import lombok.AccessLevel;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class Commons {
   @JoinTable(name = "user_commons", 
     joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
     inverseJoinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"))
-    @JsonBackReference // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
+    @JsonIgnore // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
     private List<User> users;
 }
 
