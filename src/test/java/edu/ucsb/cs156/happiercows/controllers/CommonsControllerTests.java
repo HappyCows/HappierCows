@@ -23,6 +23,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -40,7 +44,7 @@ public class CommonsControllerTests extends ControllerTestCase {
 
   @WithMockUser(roles={"ADMIN"})
   @Test
-  public void currentUser__logged_in() throws Exception {
+  public void createCommonsTest() throws Exception {
     Commons expectedCommons = Commons.builder().name("TestCommons").build();
     ObjectMapper mapper = new ObjectMapper();
     String requestBody = mapper.writeValueAsString(expectedCommons);
@@ -57,4 +61,25 @@ public class CommonsControllerTests extends ControllerTestCase {
     Commons actualCommons = objectMapper.readValue(responseString, Commons.class);
     assertEquals(actualCommons, expectedCommons);
   }
+
+  @WithMockUser(roles={"USER"})
+  @Test
+  public void getCommonsTest() throws Exception {
+    List<Commons> expectedCommons = new ArrayList<Commons>();
+    Commons Commons1 = Commons.builder().name("TestCommons1").build();
+
+    expectedCommons.add(Commons1);
+    when(commonsRepository.findAll()).thenReturn(expectedCommons);
+    MvcResult response = mockMvc.perform(get("/api/commons").contentType("application/json"))
+    .andExpect(status().isOk()).andReturn();
+
+    verify(commonsRepository, times(1)).findAll();
+
+    String responseString = response.getResponse().getContentAsString();
+    List<Commons> actualCommons = objectMapper.readValue(responseString, new TypeReference<List<Commons>>() {
+    });
+    assertEquals(actualCommons, expectedCommons);
+  }
+
+  
 }
