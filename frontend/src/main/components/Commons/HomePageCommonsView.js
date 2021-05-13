@@ -1,13 +1,16 @@
 import React from "react";
-import CommonsCard from "./CommonsCard";
-import { Card } from "react-bootstrap";
+import CommonsList from "./CommonsList";
 
-const CommonsList = (props) => {
+
+const HomePageCommonsView = (props) => {
+
+    const onButtonClick = ()=> {console.log("clicked")};
 
     return (
-        <Card>
-                {props.commonList.map((c)=>(<CommonsCard key={c.id} commons={c} buttonText={props.buttonText} buttonLink={props.buttonLink}/>)) }
-        </Card>
+       <div style={{width:"auto", display:"inline-flex", flexDirection:"row"}}>
+            <CommonsList commonList={props.commonsJoined} buttonText={"Visit"} buttonLink={onButtonClick}/>
+            <CommonsList commonList={props.commonsNotJoined} buttonText={"Join"} buttonLink={onButtonClick}/>
+       </div>
     )
 
     // return(
@@ -23,4 +26,4 @@ const CommonsList = (props) => {
     // );
 };
 
-export default CommonsList;
+export default HomePageCommonsView;
