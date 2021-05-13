@@ -15,10 +15,6 @@ This rewrite uses the new tech stack being developed for [CMPSC 156](https://ucs
 Storybook is here:
 * Production: <https://happycows.github.io/HappierCows-docs/>
 * QA: <https://happycows.github.io/HappierCows-docs-qa/>
-# Test setup
-
-For testing, you need to set a repository secret `TEST_PROPERTIES` to be the contents of `.env.SAMPLE`.   It is not necessary to have
-valid values for each of the environment variables, but if they are undefined, the tests will fail.
 
 # Setup before running application
 
