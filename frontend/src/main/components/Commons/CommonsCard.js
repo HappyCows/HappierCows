@@ -1,22 +1,17 @@
 import React from "react";
+import { Card, Button, Container, Row, Col } from "react-bootstrap";
 
 const CommonsCard = (props) => {
     return(
-        <div style={{display:"inline-flex", flexDirection:"row", width:"500px", height:"75px", opacity:".85", borderTop:"1px solid lightGrey"}}>
-            <h3 style={{width:"100px", padding:"10px", paddingTop:"20px", paddingBottom:"20px"}}>{props.commons.id}</h3>
-            <h3 style={{width:"265px", padding:"10px", paddingTop:"20px", paddingBottom:"20px"}}>{props.commons.name}</h3>
-            {props.buttonText != null && <button 
-                style={{margin:"22.5px", 
-                    width:"70px", 
-                    height:"30px", 
-                    backgroundColor:"red", 
-                    borderWidth:"0px", 
-                    color:"white", 
-                    fontSize:"20px", 
-                    fontWeight:"bold", 
-                    borderRadius:"5px"}} 
-            onClick={props.buttonLink}>{props.buttonText}</button>}
-        </div>
+        <Card.Body style={{fontSize:"20px", borderTop:"1px solid lightgrey"}}>
+            <Container>
+                <Row>
+                    <Col sx={4}>{props.commons.id}</Col>
+                    <Col sx={4}>{props.commons.name}</Col>
+                    <Col sm={4}>{props.buttonText != null && <Button variant={'danger'} size="sm" className="mx-4" onClick={props.buttonLink} block>{props.buttonText}</Button>}</Col>
+                </Row>
+            </Container>
+        </Card.Body>
     );
 };
 

@@ -1,17 +1,22 @@
 import React from "react";
 import CommonsCard from "./CommonsCard";
+import { Card, Container, Row, Col } from "react-bootstrap";
 
 const CommonsList = (props) => {
     return(
-        <div style={{width:"500px", margin:"20px", borderRadius:"5px", backgroundColor:"white",}}>
-            <div style={{width:"500px", display:"inline-flex", flexDirection:"row", opacity:".85"}}>
-                <h5 style={{width:"100px", padding:"10px", paddingTop:"5px", paddingBottom:"5px"}}>ID #</h5>
-                <h5 style={{width:"265px", padding:"10px", paddingTop:"5px", paddingBottom:"5px"}}>Common Name</h5>
-            </div>
-            <div>
-                {props.commonList.map((c)=>(<CommonsCard key={c.id} commons={c} buttonText={props.buttonText} buttonLink={props.buttonLink}/>)) }
-            </div>
-        </div>
+        <Card style={{opacity:".9"}} className="my-3 border-0">
+            <Card.Title style={{fontSize:"35px"}} className="text-center my-3">{props.buttonText} A Commons</Card.Title>
+            <Card.Subtitle>
+                <Container>
+                    <Row>
+                        <Col sx={4}>ID#</Col>
+                        <Col sx={4}>Common's Name</Col>
+                        <Col sm={4}></Col>
+                    </Row>
+                </Container>
+            </Card.Subtitle>
+            {props.commonList.map((c)=>(<CommonsCard key={c.id} commons={c} buttonText={props.buttonText} buttonLink={props.buttonLink}/>)) }
+        </Card>
     );
 };
 

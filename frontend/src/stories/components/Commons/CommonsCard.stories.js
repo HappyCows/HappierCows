@@ -1,6 +1,6 @@
 import React from 'react';
-
 import CommonsCard from "main/components/Commons/CommonsCard";
+import commonsFixtures from "fixtures/commonsFixtures";
 
 export default {
     title: 'components/Commons/CommonsCard', 
@@ -13,19 +13,14 @@ const Template = (args) => {
     )
 };
 
-const c = {
-    id: 5,
-    name: 'Seths Common'
-}
-
 export const nullButton = Template.bind({});
 nullButton.args = {
     buttonText: null,
-    commons: c
+    commons: commonsFixtures.threeCommons[0]
 };
 
 export const textButton = Template.bind({});
 textButton.args = {
     buttonText: "Join",
-    commons: c
+    commons: commonsFixtures.threeCommons[0]
 };

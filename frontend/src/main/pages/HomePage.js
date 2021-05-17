@@ -1,34 +1,28 @@
+import React from "react"
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import CommonsList from "main/components/Commons/CommonsList";
-
-const commonList = [
-  {
-    id: 5,
-    name: 'Seths Common'
-  },
-  {
-    id: 4,
-    name: 'Phils Common'
-  },
-  {
-    id: 18,
-    name: 'Kevins Common'
-  },
-]
-const onButtonClick = ()=> {console.log("clicked")};
+import commonsFixtures from "fixtures/commonsFixtures";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default function HomePage() {
+  const commonsJoined = commonsFixtures.threeCommons; // TODO Get from backedn
+  const commonsAll = commonsFixtures.threeCommons; // TODO Get from backend
+
+  const onButtonClick = ()=> {console.log("clicked")};
+
   return (
     <BasicLayout>
-      <div className="pt-2" style={{backgroundColor:"lightBlue"}}>
+      <div>
         <h1>Hello, world!</h1>
         <p>
           This is a webapp containing a bunch of different Spring Boot/React examples.
         </p>
-        <div style={{width:"auto", display:"inline-flex", flexDirection:"row"}}>
-          <CommonsList commonList={commonList} buttonText={"Visit"} buttonLink={onButtonClick}/>
-          <CommonsList commonList={commonList} buttonText={"Join"} buttonLink={onButtonClick}/>
-        </div>
+        <Container>
+          <Row>
+            <Col sm><CommonsList commonList={commonsJoined} buttonText={"Visit"} buttonLink={onButtonClick}/></Col>
+            <Col sm><CommonsList commonList={commonsAll} buttonText={"Join"} buttonLink={onButtonClick}/></Col>
+          </Row>
+        </Container>
       </div>
     </BasicLayout>
   )
