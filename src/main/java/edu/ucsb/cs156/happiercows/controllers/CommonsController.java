@@ -60,14 +60,13 @@ public class CommonsController extends ApiController {
 
     @ApiOperation(value = "Join a common")
     @PreAuthorize("hasRole('ROLE_USER')")
-    @PostMapping(value = "join/{commonsId}", produces = "application/json")
+    @PostMapping(value = "/join/{commonsId}", produces = "application/json")
     public ResponseEntity<String> joinCommon(@PathVariable("commonsId") Long commonsId) throws Exception {
-        CurrentUser currentUser = getCurrentUser();
         Optional<Commons> c = commonsRepository.findById(commonsId);
         if(c.isEmpty()){
             throw new Exception("Commons not found.");
         }
-        User u = currentUser.getUser();
+        User u = getUser();
         c.get().getUsers().add(u);
         Commons savedCommons = commonsRepository.save(c.get());
         String body = mapper.writeValueAsString(savedCommons);
