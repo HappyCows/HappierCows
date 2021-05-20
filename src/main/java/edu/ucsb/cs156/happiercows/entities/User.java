@@ -44,6 +44,5 @@ public class User {
   @JoinTable(name = "user_commons", 
     joinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"), 
     inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-    //@JsonManagedReference // https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
     private List<Commons> commons;
 }
