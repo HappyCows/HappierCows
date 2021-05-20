@@ -34,6 +34,16 @@ Storybook is here:
   - After that, do `npm start`
 * Then, the app should be available on <http://localhost:8080>
 
+# Deployment on Heroku
+
+> TODO: Add more detailed deployment documentation
+
+Run the following commands to update the Heroku configuration 
+```bash
+heroku config:set $(cat .env) --app <heroku app name>
+heroku config:set PRODUCTION=true --app <heroku app name>
+```
+
 # To run React Storybook
 
 * cd into frontend
