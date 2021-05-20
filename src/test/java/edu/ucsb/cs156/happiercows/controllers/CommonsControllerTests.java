@@ -97,25 +97,12 @@ public class CommonsControllerTests extends ControllerTestCase {
     when(commonsRepository.findById(eq(1L))).thenReturn(Optional.of(commons));
     when(commonsRepository.save(eq(commons))).thenReturn(commons);
 
-    // MvcResult response = mockMvc
-    // .perform
-    // (post("/api/commons/join/1")
-    // .with(csrf())
-    // .contentType("application/json"))
-    // .andExpect(status().isOk())
-    // .andReturn();
     MvcResult response = mockMvc
     .perform(post("/api/commons/join/1").with(csrf()).contentType(MediaType.APPLICATION_JSON)
     .characterEncoding("utf-8").content(requestBody))
     .andExpect(status().isOk()).andReturn();
 
-    
-
     verify(commonsRepository, times(1)).save(commons);
-
-    // String responseString = response.getResponse().getContentAsString();
-    // Commons actualCommons = objectMapper.readValue(responseString, Commons.class);
-    // //assertEquals(expectedCommons, actualCommons);
     assertTrue(commons.getUsers().contains(u));
   }
 
