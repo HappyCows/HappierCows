@@ -11,7 +11,7 @@ export default function AppNavbar({currentUser, doLogout}) {
         </Navbar.Brand>
 
         <Navbar.Toggle />
-
+        
         <Navbar.Collapse className="justify-content-between">
           <Nav className="mr-auto">
             {
