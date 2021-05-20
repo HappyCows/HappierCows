@@ -8,6 +8,7 @@ import lombok.Builder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class User {
   private String hostedDomain;
   private boolean admin;
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinTable(name = "user_commons", 
     joinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"), 
     inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
