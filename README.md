@@ -1,6 +1,8 @@
+
 # HappyCows/HappierCows
 
 This is a full rewrite of the application HappyCows, a project sponsored by [Mattanjah de Vries, Distingished Professor of Chemistry at UC Santa Barbara](https://www.chem.ucsb.edu/people/mattanjah-s-de-vries).
+
 
 The application is a simulation game that gives players (typically students in Prof. de Vries' courses) an opportunity to learn about the [Tragedy of the Commons](https://en.wikipedia.org/wiki/Tragedy_of_the_commons).
 
@@ -10,7 +12,6 @@ This rewrite uses the new tech stack being developed for [CMPSC 156](https://ucs
 * Spring Security plus Google OAuth for authentication/authorization
   - This last point is what distinguishes this tech stack from the one currently in use (as S21) for the three legacy code apps in
     CMPSC 156: the current apps use Auth0 with JWTs as the authentication/authorization mechanism.
-
 
 Storybook is here:
 * Production: <https://happycows.github.io/HappierCows-docs/>
