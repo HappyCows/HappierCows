@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinColumn;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 @Data
@@ -42,5 +44,5 @@ public class User {
   @JoinTable(name = "user_commons", 
     joinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"), 
     inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-  private List<Commons> commons;
+    private List<Commons> commons;
 }

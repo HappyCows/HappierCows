@@ -1,5 +1,6 @@
 package edu.ucsb.cs156.happiercows.controllers;
 
+import java.util.Optional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,9 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import edu.ucsb.cs156.happiercows.entities.Commons;
 import edu.ucsb.cs156.happiercows.repositories.CommonsRepository;
+import edu.ucsb.cs156.happiercows.models.CurrentUser;
+import edu.ucsb.cs156.happiercows.entities.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -51,6 +55,21 @@ public class CommonsController extends ApiController {
         Commons savedCommons = commonsRepository.save(c);
         String body = mapper.writeValueAsString(savedCommons);
         log.info("body={}", body);
+        return ResponseEntity.ok().body(body);
+    }
+
+    @ApiOperation(value = "Join a common")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostMapping(value = "/join/{commonsId}", produces = "application/json")
+    public ResponseEntity<String> joinCommon(@PathVariable("commonsId") Long commonsId) throws Exception {
+        Optional<Commons> c = commonsRepository.findById(commonsId);
+        if(c.isEmpty()){
+            throw new Exception("Commons not found.");
+        }
+        User u = getUser();
+        c.get().getUsers().add(u);
+        Commons savedCommons = commonsRepository.save(c.get());
+        String body = mapper.writeValueAsString(savedCommons);
         return ResponseEntity.ok().body(body);
     }
 }
