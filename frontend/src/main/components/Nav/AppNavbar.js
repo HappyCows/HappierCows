@@ -11,12 +11,12 @@ export default function AppNavbar({currentUser, doLogout}) {
         </Navbar.Brand>
 
         <Navbar.Toggle />
-
+        
         <Navbar.Collapse className="justify-content-between">
           <Nav className="mr-auto">
             {
               hasRole(currentUser,"ROLE_ADMIN") && (
-                <NavDropdown title="Admin" id="appnavbar-admin-dropdown">
+                <NavDropdown title="Admin" id="appnavbar-admin-dropdown" data-testid="appnavbar-admin-dropdown" >
                   <NavDropdown.Item href="/admin/users">Users</NavDropdown.Item>
                 </NavDropdown>
               )

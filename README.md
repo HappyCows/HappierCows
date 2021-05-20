@@ -1,6 +1,8 @@
+
 # HappyCows/HappierCows
 
 This is a full rewrite of the application HappyCows, a project sponsored by [Mattanjah de Vries, Distingished Professor of Chemistry at UC Santa Barbara](https://www.chem.ucsb.edu/people/mattanjah-s-de-vries).
+
 
 The application is a simulation game that gives players (typically students in Prof. de Vries' courses) an opportunity to learn about the [Tragedy of the Commons](https://en.wikipedia.org/wiki/Tragedy_of_the_commons).
 
@@ -11,14 +13,9 @@ This rewrite uses the new tech stack being developed for [CMPSC 156](https://ucs
   - This last point is what distinguishes this tech stack from the one currently in use (as S21) for the three legacy code apps in
     CMPSC 156: the current apps use Auth0 with JWTs as the authentication/authorization mechanism.
 
-
 Storybook is here:
 * Production: <https://happycows.github.io/HappierCows-docs/>
 * QA: <https://happycows.github.io/HappierCows-docs-qa/>
-# Test setup
-
-For testing, you need to set a repository secret `TEST_PROPERTIES` to be the contents of `.env.SAMPLE`.   It is not necessary to have
-valid values for each of the environment variables, but if they are undefined, the tests will fail.
 
 # Setup before running application
 
@@ -36,6 +33,16 @@ valid values for each of the environment variables, but if they are undefined, t
   - If running for the first time, do `npm install` to install dependencies.
   - After that, do `npm start`
 * Then, the app should be available on <http://localhost:8080>
+
+# Deployment on Heroku
+
+> TODO: Add more detailed deployment documentation
+
+Run the following commands to update the Heroku configuration 
+```bash
+heroku config:set $(cat .env) --app <heroku app name>
+heroku config:set PRODUCTION=true --app <heroku app name>
+```
 
 # To run React Storybook
 
