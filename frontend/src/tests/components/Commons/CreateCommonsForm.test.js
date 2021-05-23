@@ -22,6 +22,7 @@ describe(CreateCommonsForm, () => {
     await act(async () => render(<CreateCommonsForm onSubmit={onSubmit} />));
 
     userEvent.type(screen.getByLabelText(/commons name/i), "Test");
+    serEvent.type(screen.getByLabelText(/starting balance/i), "1000");
     userEvent.type(screen.getByLabelText(/cow price/i), "99.95");
     userEvent.type(screen.getByLabelText(/milk price/i), "5.99");
     userEvent.type(screen.getByLabelText(/start date/i), "2021-01-01");
@@ -30,6 +31,7 @@ describe(CreateCommonsForm, () => {
     await waitFor(() => expect(onSubmit).toBeCalledTimes(1));
     expect(onSubmit.mock.calls[0][0]).toMatchObject({
       name: "Test",
+      startingBalance: 1000,
       cowPrice: 99.95,
       milkPrice: 5.99,
       startDate: new Date("2021-01-01"),

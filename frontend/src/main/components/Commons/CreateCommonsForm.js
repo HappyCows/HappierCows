@@ -25,6 +25,24 @@ export default function CreateCommonsForm(props) {
       </Form.Group>
 
       <Form.Group className="mb-3">
+        <Form.Label htmlFor="startingBalance">Starting Balance</Form.Label>
+        <Form.Control
+          id="startingBalance"
+          type="number"
+          step="0.01"
+          isInvalid={!!errors.startingBalance}
+          {...register("startingBalance", {
+            valueAsNumber: true,
+            required: "Starting Balance is required",
+            min: { value: 0.01, message: "Starting Balance must be positive" },
+          })}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.startingBalance?.message}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
         <Form.Label htmlFor="cowPrice">Cow Price</Form.Label>
         <Form.Control
           id="cowPrice"
