@@ -4,6 +4,7 @@ import ProfilePage from "main/pages/ProfilePage";
 import SwaggerPage from "main/pages/SwaggerPage";
 
 import AdminUsersPage from "main/pages/AdminUsersPage";
+import AdminCreateCommonsPage from "main/pages/AdminCreateCommonsPage";
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 import PlayPage from "main/pages/PlayPage"; 
 
@@ -21,6 +22,9 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           {
             hasRole(currentUser, "ROLE_ADMIN") && <Route path="/admin/users" element={<AdminUsersPage />} />
+          }
+          {
+            hasRole(currentUser, "ROLE_ADMIN") && <Route path="/admin/createcommons" element={<AdminCreateCommonsPage />} />
           }
           <Route path="/play/:commonsId" element={<PlayPage />} /> 
           <Route path="/swagger" element={<SwaggerPage />} />
