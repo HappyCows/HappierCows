@@ -8,7 +8,7 @@ const CommonsCard = (props) => {
                 <Row>
                     <Col sx={4}>{props.commons.id}</Col>
                     <Col sx={4}>{props.commons.name}</Col>
-                    <Col sm={4}>{props.buttonText != null && <Button variant={'danger'} size="sm" className="mx-4" onClick={props.buttonLink} block>{props.buttonText}</Button>}</Col>
+                    <Col sm={4}>{props.buttonText != null && <Button variant={'danger'} size="sm" className="mx-4" onClick={() => props.buttonLink(props.commons.id)} block>{props.buttonText}</Button>}</Col>
                 </Row>
             </Container>
         </Card.Body>
