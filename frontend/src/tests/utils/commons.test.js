@@ -30,7 +30,7 @@ describe("utils/commons tests", () => {
             await waitFor(() => result.current.isSuccess);
             expect(result.current.data).toEqual([]);
 
-            const queryState = queryClient.getQueryState("commons");
+            const queryState = queryClient.getQueryState("getCommons");
             expect(queryState).toBeDefined();
 
             await waitFor(() => expect(console.error).toHaveBeenCalled());
@@ -86,5 +86,24 @@ describe("utils/commons tests", () => {
 
         });
     });
+
+    // describe("JoinCommons tests", () => {
+    //     test("test JoinCommons returns correct message when api is mocked", async () => {
+
+    //         const queryClient = new QueryClient();
+    //         const wrapper = ({ children }) => (
+    //             <QueryClientProvider client={queryClient}>
+    //                 {children}
+    //             </QueryClientProvider>
+    //         );
+    //         var axiosMock = new AxiosMockAdapter(axios);
+    //         axiosMock.onPost("/api/commons/join/5").reply(200, commonsFixtures.threeCommons[0]);
+
+    //         const { result, waitFor } = renderHook(() => JoinCommons(5), { wrapper });
+    //         await waitFor(() => result.current.isPosted);
+    //         expect(result.current.data).toEqual(commonsFixtures.threeCommons[0]);
+
+    //     });
+    // });
     
 });

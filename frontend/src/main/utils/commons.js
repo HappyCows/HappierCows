@@ -1,8 +1,8 @@
-import { useQuery } from "react-query";
+import { useQuery, /*useMutation*/ } from "react-query";
 import axios from "axios";
 
 export function useCommons() {
-  return useQuery("commons", async () => {
+  return useQuery("getCommons", async () => {
     const uri = "/api/commons";
     try {
       const response = await axios.get(uri);      
@@ -14,4 +14,18 @@ export function useCommons() {
   }, {
     initialData: []
   });
+}
+
+export async function JoinCommons(id) {
+  // return useMutation("joinCommons", async () => {
+    const uri = "/api/commons/join/" + id;
+    try {
+      const response = await axios.post(uri);  
+      console.log(response)    
+      return response.data ;
+    } catch (e) {
+      console.error(`Error postting data to ${uri}:`,e);
+      return [];
+    }
+  // });
 }
