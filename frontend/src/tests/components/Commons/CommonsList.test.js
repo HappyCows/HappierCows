@@ -9,7 +9,7 @@ describe("CommonsCard tests", () => {
             <CommonsList commonList = {commonsFixtures.threeCommons} buttonText = {"Join"} />
         );
         const buttons = getAllByTestId("commonsCard-button");
-        buttons.map((b) => {
+        buttons.forEach((b) => {
             expect(b).toBeInTheDocument();
             expect(typeof(b.textContent)).toBe('string');
             expect(b.textContent).toEqual('Join');
