@@ -85,25 +85,5 @@ describe("utils/commons tests", () => {
             expect(result.current.data).toEqual(commonsFixtures.threeCommons);
 
         });
-    });
-
-    // describe("JoinCommons tests", () => {
-    //     test("test JoinCommons returns correct message when api is mocked", async () => {
-
-    //         const queryClient = new QueryClient();
-    //         const wrapper = ({ children }) => (
-    //             <QueryClientProvider client={queryClient}>
-    //                 {children}
-    //             </QueryClientProvider>
-    //         );
-    //         var axiosMock = new AxiosMockAdapter(axios);
-    //         axiosMock.onPost("/api/commons/join/5").reply(200, commonsFixtures.threeCommons[0]);
-
-    //         const { result, waitFor } = renderHook(() => JoinCommons(5), { wrapper });
-    //         await waitFor(() => result.current.isPosted);
-    //         expect(result.current.data).toEqual(commonsFixtures.threeCommons[0]);
-
-    //     });
-    // });
-    
+    });    
 });
