@@ -2,9 +2,6 @@ package edu.ucsb.cs156.happiercows.controllers;
 
 import java.util.Optional;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,24 +25,38 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Api(description = "Commons")
-@RequestMapping("/api/commons")
+@RequestMapping(value="/api/commons", produces="application/json")
 @RestController
 public class CommonsController extends ApiController {
-    @Autowired
-    CommonsRepository commonsRepository;
+  @Autowired
+  private CommonsRepository commonsRepository;
 
-    @Autowired
-    ObjectMapper mapper;
+  @ApiOperation("Get a list of all commons")
+  @PreAuthorize("hasRole('ROLE_USER')")
+  @GetMapping
+  public ResponseEntity<Iterable<Commons>> getCommons() {
+    log.info("getCommons()...");
+    Iterable<Commons> users = commonsRepository.findAll();
+    return ResponseEntity.ok(users);
+  }
 
-    @ApiOperation(value = "Get a list of all commons")
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @GetMapping("")
-    public ResponseEntity<String> getCommons() throws JsonProcessingException {
-        log.info("getCommons()...");
-        Iterable<Commons> users = commonsRepository.findAll();
-        String body = mapper.writeValueAsString(users);
-        return ResponseEntity.ok().body(body);
-    }
+  @ApiOperation("Create a new commons")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @PostMapping("/new")
+  public ResponseEntity<Commons> createCommons(@ApiParam("name of commons") @RequestParam String name) {
+    log.info("name={}", name);
+    Commons c = Commons.builder().name(name).build();
+    Commons savedCommons = commonsRepository.save(c);
+    log.info("body={}", savedCommons);
+    return ResponseEntity.ok(savedCommons);
+  }
+
+  @ApiOperation("Join a common")
+  @PreAuthorize("hasRole('ROLE_USER')")
+  @PostMapping("/join/{commonsId}")
+  public ResponseEntity<Commons> joinCommon(@PathVariable("commonsId") Long commonsId) throws Exception {
+    Optional<Commons> c = commonsRepository.findById(commonsId);
+    Commons commons = c.orElseThrow(() -> new Exception("Commons not found."));
 
     @ApiOperation(value = "Create a new commons")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -59,19 +70,9 @@ public class CommonsController extends ApiController {
         log.info("body={}", body);
         return ResponseEntity.ok().body(body);
     }
-
-    @ApiOperation(value = "Join a common")
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @PostMapping(value = "/join/{commonsId}", produces = "application/json")
-    public ResponseEntity<String> joinCommon(@PathVariable("commonsId") Long commonsId) throws Exception {
-        Optional<Commons> c = commonsRepository.findById(commonsId);
-        if(c.isEmpty()){
-            throw new Exception("Commons not found.");
-        }
-        User u = getUser();
-        c.get().getUsers().add(u);
-        Commons savedCommons = commonsRepository.save(c.get());
-        String body = mapper.writeValueAsString(savedCommons);
-        return ResponseEntity.ok().body(body);
-    }
+    User u = getUser();
+    commons.getUsers().add(u);
+    Commons savedCommons = commonsRepository.save(commons);
+    return ResponseEntity.ok(savedCommons);
+  }
 }
