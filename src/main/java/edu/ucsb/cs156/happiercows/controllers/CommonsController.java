@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import edu.ucsb.cs156.happiercows.entities.Commons;
 import edu.ucsb.cs156.happiercows.repositories.CommonsRepository;
+import edu.ucsb.cs156.happiercows.models.CreateCommonsParams;
 import edu.ucsb.cs156.happiercows.models.CurrentUser;
 import edu.ucsb.cs156.happiercows.entities.User;
 import io.swagger.annotations.Api;
@@ -48,10 +50,10 @@ public class CommonsController extends ApiController {
     @ApiOperation(value = "Create a new commons")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping(value = "/new", produces = "application/json")
-    public ResponseEntity<String> createCommons(@ApiParam("name of commons") @RequestParam String name)
+    public ResponseEntity<String> createCommons(@ApiParam("name of commons") @RequestBody CreateCommonsParams params)
             throws JsonProcessingException {
-        log.info("name={}", name);
-        Commons c = Commons.builder().name(name).build();
+        log.info("name={}", params.getName());
+        Commons c = Commons.builder().name(params.getName()).build();
         Commons savedCommons = commonsRepository.save(c);
         String body = mapper.writeValueAsString(savedCommons);
         log.info("body={}", body);
