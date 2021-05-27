@@ -30,7 +30,7 @@ describe("utils/commons tests", () => {
             await waitFor(() => result.current.isSuccess);
             expect(result.current.data).toEqual([]);
 
-            const queryState = queryClient.getQueryState("commons");
+            const queryState = queryClient.getQueryState("getCommons");
             expect(queryState).toBeDefined();
 
             await waitFor(() => expect(console.error).toHaveBeenCalled());
@@ -85,6 +85,5 @@ describe("utils/commons tests", () => {
             expect(result.current.data).toEqual(commonsFixtures.threeCommons);
 
         });
-    });
-    
+    });    
 });
