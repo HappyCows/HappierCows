@@ -3,14 +3,16 @@ import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import CommonsList from "main/components/Commons/CommonsList";
 import { Container, Row, Col } from "react-bootstrap";
 import { useCurrentUser } from "main/utils/currentUser";
-import { useCommons, JoinCommons } from "main/utils/commons";
+import { useCommons, useJoinCommons } from "main/utils/commons";
 import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
   const [commons, setCommons] = useState([]);
   const [commonsJoined, setCommonsJoined] = useState([]);
   const { data: currentUser } = useCurrentUser();
-  const { data: c }= useCommons();
+  const { data: c } = useCommons();
+
+  const mutation = useJoinCommons()
 
   useEffect(
     () => {
@@ -30,10 +32,6 @@ export default function HomePage() {
 
   let navigate = useNavigate();
   const visitButtonClick = (id)=> {navigate("/play/"+id)};
-  const joinButtonClick = (id)=> {
-    JoinCommons(id);
-    window.location.reload(false);
-  };
 
   return (
     <BasicLayout>
@@ -45,7 +43,7 @@ export default function HomePage() {
         <Container>
           <Row>
             <Col sm><CommonsList commonList={commonsJoined} buttonText={"Visit"} buttonLink={visitButtonClick}/></Col>
-            <Col sm><CommonsList commonList={commons} buttonText={"Join"} buttonLink={joinButtonClick}/></Col>
+            <Col sm><CommonsList commonList={commons} buttonText={"Join"} buttonLink={mutation.mutate}/></Col>
           </Row>
         </Container>
       </div>
