@@ -44,6 +44,14 @@ heroku config:set $(cat .env) --app <heroku app name>
 heroku config:set PRODUCTION=true --app <heroku app name>
 ```
 
+You will also want to set the internal api key in the production app, which is used for authenticating
+communication between internal services and the backend.
+```bash
+heroku config:set INTERNAL_API_KEY=<random string> --app <heroku app name>
+```
+Where `<random string>` is any sufficiently random string of characters. You can use a site like
+http://www.unit-conversion.info/texttools/random-string-generator/ to generate this string, if you'd like.
+
 # To run React Storybook
 
 * cd into frontend
