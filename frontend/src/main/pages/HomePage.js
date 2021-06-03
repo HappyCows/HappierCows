@@ -16,7 +16,7 @@ export default function HomePage() {
 
   useEffect(
     () => {
-      if(currentUser.root){
+      if(currentUser.root && currentUser.root.user.commons){
         setCommonsJoined(currentUser.root.user.commons);
       }
     },[currentUser]
