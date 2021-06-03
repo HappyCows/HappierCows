@@ -9,7 +9,7 @@ export default function HomePage() {
   const { data: currentUser } = useCurrentUser();
   const { data: commons }= useCommons();
   let commonsJoined = [];
-  if(currentUser.root){
+  if(currentUser.root && currentUser.root.user.commons){
     commonsJoined = currentUser.root.user.commons;
   }
 
