@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export function createCommons(newCommons){
-    axios.post('/api/commons/new',newCommons);
+    return axios.post('/api/commons/new',newCommons);
 }
