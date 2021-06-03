@@ -13,6 +13,7 @@ const AdminCreateCommonsPage = () => {
         }})
     return (
         <BasicLayout>
+            <h2>Create Commons</h2>
             <CreateCommonsForm 
                 onSubmit={ (result) => mutation.mutate(result)}
             />

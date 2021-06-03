@@ -8,7 +8,6 @@ import AdminCreateCommonsPage from "main/pages/AdminCreateCommonsPage";
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 import PlayPage from "main/pages/PlayPage"; 
 
-import { ToastProvider } from 'react-toast-notifications';
 
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -18,7 +17,6 @@ function App() {
   const { data: currentUser } = useCurrentUser();
 
   return (
-    <ToastProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -33,7 +31,6 @@ function App() {
           <Route path="/swagger" element={<SwaggerPage />} />
         </Routes>
       </BrowserRouter>
-    </ToastProvider>
   );
 }
 
