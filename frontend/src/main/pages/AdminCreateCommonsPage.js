@@ -9,9 +9,7 @@ const AdminCreateCommonsPage = () => {
     const {addToast} = useToasts();
     const mutation = useMutation(createCommons,
         {onSuccess: () => {
-            addToast("Commons successfully created!");
-            addToast("Commons successfully created!");
-            console.log("hello");
+            addToast("Commons successfully created!", { appearance: 'success' });
         }})
     return (
         <BasicLayout>
