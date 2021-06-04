@@ -12,11 +12,11 @@ export default function HomePage() {
   const { data: currentUser } = useCurrentUser();
   const { data: c } = useCommons();
 
-  const mutation = useJoinCommons()
+  const mutation = useJoinCommons({onSuccess: () => {}, onError: (error, id) => {console.error(`Error posting data to ${"/api/commons/join/" + id}:`, error)}})
 
   useEffect(
     () => {
-      if(currentUser.root && currentUser.root.user.commons){
+      if(currentUser?.root?.user?.commons){
         setCommonsJoined(currentUser.root.user.commons);
       }
     },[currentUser]

@@ -16,19 +16,15 @@ export function useCommons() {
   });
 }
 
-export function useJoinCommons() {
+export function useJoinCommons(params) {
   const queryClient = useQueryClient();
-  return useMutation( async (id) => {
-    const uri = "/api/commons/join/" + id;
-    try {
-      const response = await axios.post(uri);   
-      return response.data ;
-    } catch (e) {
-      console.error(`Error postting data to ${uri}:`,e);
-      return [];
-    }
-  }, {onSuccess: () => {
-        queryClient.invalidateQueries('current user')
-    }
+  return useMutation((id) => {
+    return axios.post("/api/commons/join/" + id);
+  }, { 
+    onSuccess: () => {
+        params?.onSuccess && params.onSuccess();
+        queryClient.invalidateQueries('current user') //refresh commons for current user
+    },
+    onError: params?.onError
   });
 }
