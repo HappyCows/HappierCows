@@ -13,13 +13,18 @@ describe("HomePage tests", () => {
         var axiosMock = new AxiosMockAdapter(axios);
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
         axiosMock.onGet("/api/commons").reply(200, []);
-        render(
+        const { getByTestId } = render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
                     <HomePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
+
+        const title = getByTestId("homePage-title");
+        expect(title).toBeInTheDocument();
+        expect(typeof(title.textContent)).toBe('string');
+        expect(title.textContent).toEqual('Howdy Farmer');
     });
 
     test("renders without crashing when lists are full", () => {
@@ -27,13 +32,18 @@ describe("HomePage tests", () => {
         var axiosMock = new AxiosMockAdapter(axios);
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
         axiosMock.onGet("/api/commons").reply(200, commonsFixtures.threeCommons);
-        render(
+        const { getByTestId } = render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
                     <HomePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
+
+        const title = getByTestId("homePage-title");
+        expect(title).toBeInTheDocument();
+        expect(typeof(title.textContent)).toBe('string');
+        expect(title.textContent).toEqual('Howdy Farmer');
     });
 });
 

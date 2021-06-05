@@ -1,0 +1,20 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import commonsFixtures from "fixtures/commonsFixtures"; 
+import HomePage from "main/pages/HomePage";
+
+<Meta
+  title="pages/HomePage"
+  component={HomePage}
+/>
+
+# HomePage
+The page that displays commons lists. 
+
+<Canvas>
+  <Story name="emptyLists">
+    <HomePage />
+  </Story>
+  <Story name="fullLists">
+    <HomePage />
+  </Story>
+</Canvas>
