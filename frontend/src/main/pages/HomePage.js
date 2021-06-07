@@ -16,10 +16,8 @@ export default function HomePage() {
 
   const onButtonClick = ()=> {console.log("clicked")};
 
-  // `url(${Background})` `url('file://${Background}')`  'url(' + require('./../../assets/HomePageBackground.jpg') + ')'  'url(' + Background + ')'  `url(${require('./../../assets/HomePageBackground.jpg')})`
-
   return (
-    <div style={{height: "100vh", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundImage: `url(${Background})`}}>
+    <div style={{backgroundSize: 'cover', backgroundImage: `url(${Background})`}}>
     <BasicLayout>
         <h1 data-testid="homePage-title" style={{fontSize: "75px", borderRadius: "7px", backgroundColor: "white", opacity:".9"}} className="text-center border-0 my-3">Howdy Farmer</h1>
         <Container>
