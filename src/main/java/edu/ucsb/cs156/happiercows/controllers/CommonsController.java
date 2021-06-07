@@ -1,5 +1,6 @@
 package edu.ucsb.cs156.happiercows.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import edu.ucsb.cs156.happiercows.entities.Commons;
 import edu.ucsb.cs156.happiercows.repositories.CommonsRepository;
+import edu.ucsb.cs156.happiercows.repositories.UserRepository;
 import edu.ucsb.cs156.happiercows.entities.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +29,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CommonsController extends ApiController {
   @Autowired
   private CommonsRepository commonsRepository;
+  @Autowired
+  private UserRepository userRepository;
 
   @ApiOperation("Get a list of all commons")
   @PreAuthorize("hasRole('ROLE_USER')")
@@ -59,6 +63,19 @@ public class CommonsController extends ApiController {
     commons.getUsers().add(u);
 
     Commons savedCommons = commonsRepository.save(commons);
+    return ResponseEntity.ok(savedCommons);
+  }
+
+  @ApiOperation("Remove a user from a common")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @PostMapping("/{commonsId}/remove/{userId}")
+  public ResponseEntity<Commons> removeUserFromCommon(@PathVariable("commonsId") Long commonsId, @PathVariable("userId") Long userId) throws Exception{
+    User u = userRepository.findbyId(userId);
+    
+
+    
+
+    Commons savedCommons = commonsRepository.save(c);
     return ResponseEntity.ok(savedCommons);
   }
 }
