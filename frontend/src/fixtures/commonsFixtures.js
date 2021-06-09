@@ -2,7 +2,7 @@ const commonsFixtures = {
     threeCommons: [
         {
             "id": 5,
-            "name": "Seth's Commons",
+            "name": "Seths Common",
             "day": 5,
             "endDate": "6/11/2021",
             "totalPlayers": 50,
