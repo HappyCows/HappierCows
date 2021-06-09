@@ -3,10 +3,14 @@ import Footer from "main/components/Nav/Footer";
 
 describe("Footer tests", () => {
     test("renders correctly ", async () => {
-        const { getByText } = render(
+        const { getByTestId } = render(
             <Footer />
         );
-        await waitFor(() => expect(getByText(/This is a sample webapp using React with a Spring Boot backend./)).toBeInTheDocument());
+
+        const text = getByTestId("footer-content");
+        expect(text).toBeInTheDocument();
+        expect(typeof(text.textContent)).toBe('string');
+        expect(text.textContent).toEqual('HappierCows is a project of Mattanjah de Vries, Distinguished Professor of Chemistry at UC Santa Barbra. The open source code is available on GitHub.');
     });
 });
 
