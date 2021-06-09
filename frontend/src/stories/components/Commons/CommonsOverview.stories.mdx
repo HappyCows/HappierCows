@@ -1,20 +1,20 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import { action } from "@storybook/addon-actions";
-import CommonsPlay from "main/components/Commons/CommonsPlay";
+import CommonsOverview from "main/components/Commons/CommonsOverview";
 import {currentUserFixtures} from "fixtures/currentUserFixtures"; 
 import commonsFixtures from "fixtures/commonsFixtures"; 
 
 <Meta
-  title="components/Commons/CommonsPlay"
-  component={CommonsPlay}
+  title="components/Commons/CommonsOverview"
+  component={CommonsOverview}
 />
 
-# CommonsPlay
+# CommonsOverview
 
-The main page for gameplay for a particular commons. 
+The announcement box for a specific commons. 
 
 <Canvas>
   <Story name="uncontrolled">
-    <CommonsPlay currentUser = {currentUserFixtures.adminUser} />
+    <CommonsOverview commons={commonsFixtures.oneCommons[0]} />
   </Story>
 </Canvas>

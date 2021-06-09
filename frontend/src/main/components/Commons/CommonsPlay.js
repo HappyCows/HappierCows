@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-export default function CommonsPlay({_commons, currentUser}) {
+export default function CommonsPlay({currentUser}) {
     const firstName = currentUser.root ? currentUser.root.user.givenName : ""; 
   return (
       <div >

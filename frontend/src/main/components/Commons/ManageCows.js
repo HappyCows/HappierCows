@@ -1,15 +1,35 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, _Image, Button, Row, Col} from "react-bootstrap";
+// import cowHead from "../../../CowHead.png"; 
 
-const ManageCows = () => {
+// add parameters 
+const ManageCows = ({userCommons, onBuy, onSell}) =>  {
+    // update cowPrice from fixture
     return (
         <Card>
         <Card.Header as="h5">Manage Cows</Card.Header>
         <Card.Body>
-            <Card.Title>Special title treatment</Card.Title>
-            <Card.Text>
-            With supporting text below as a natural lead-in to additional content.
-            </Card.Text>
+            {/* change $10 to info from fixture */}
+            <Card.Title>Market Cow Price: ${userCommons?.commons?.cowPrice}</Card.Title>
+           
+                <Row>
+                    <Col>
+                        {/* change button to image */}
+                        <Button variant="outline-danger">change to image</Button>
+                    </Col>
+                    <Col>
+                        <Button variant="outline-danger" onClick={()=>{onBuy(userCommons)}} data-testid={"buy-cow-button"}>+</Button>
+                        <br/>
+                        <br/>
+                        <Button variant="outline-danger" onClick={()=>{onSell(userCommons)}} data-testid={"sell-cow-button"}>-</Button>
+                        <br/>
+                        <br/>
+                    </Col>
+                </Row>
+          
+                    Note: If you increase cows, they will be automatically bought, and if you decrease, 
+                    the cows will be sold for the current cow price, time the health of that cow (as a percentage). 
+        
         </Card.Body>
         </Card>
     ); 
