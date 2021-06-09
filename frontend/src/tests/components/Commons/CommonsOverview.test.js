@@ -6,7 +6,7 @@ describe("CommonsOverview tests", () => {
 
     test("renders without crashing", () => {
         render(
-            <CommonsOverview testCommon={commonsFixtures} />
+            <CommonsOverview commons={commonsFixtures.oneCommons[0]} />
         );
     });
 });
