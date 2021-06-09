@@ -70,12 +70,14 @@ public class CommonsController extends ApiController {
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @PostMapping("/{commonsId}/remove/{userId}")
   public ResponseEntity<Commons> removeUserFromCommon(@PathVariable("commonsId") Long commonsId, @PathVariable("userId") Long userId) throws Exception{
-    User u = userRepository.findbyId(userId);
-    
+    Optional<Commons> c = commonsRepository.findById(commonsId);
+    Commons commons = c.orElseThrow(() -> new Exception("Commons not found."));
 
-    
+    Optional<User> u = userRepository.findById(userId);
+    User user = u.orElseThrow(() -> new Exception("User not found."));
+    commons.getUsers().remove(user);
 
-    Commons savedCommons = commonsRepository.save(c);
+    Commons savedCommons = commonsRepository.save(commons);
     return ResponseEntity.ok(savedCommons);
   }
 }
