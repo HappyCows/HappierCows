@@ -13,13 +13,13 @@ import edu.ucsb.cs156.happiercows.models.CurrentUser;
 import edu.ucsb.cs156.happiercows.services.CurrentUserService;
 
 @Api(description="Current User Information")
-@RequestMapping("/api/currentUser")
+@RequestMapping(value="/api/currentUser", produces="application/json")
 @RestController
 public class UserInfoController extends ApiController {
  
   @ApiOperation(value = "Get information about current user")
   @PreAuthorize("hasRole('ROLE_USER')")
-  @GetMapping("")
+  @GetMapping
   public CurrentUser getCurrentUser() {
     return super.getCurrentUser();
   }

@@ -1,9 +1,5 @@
 package edu.ucsb.cs156.happiercows.controllers;
 
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,22 +13,17 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Api(description="User information (admin only)")
-@RequestMapping("/api/admin/users")
+@RequestMapping(value="/api/admin/users", produces="application/json")
 @RestController
 public class UsersController extends ApiController {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    ObjectMapper mapper;
-
     @ApiOperation(value = "Get a list of all users")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("")
-    public ResponseEntity<String> users()
-            throws JsonProcessingException {
+    @GetMapping
+    public ResponseEntity<Iterable<User>> users() {
         Iterable<User> users = userRepository.findAll();
-        String body = mapper.writeValueAsString(users);
-        return ResponseEntity.ok().body(body);
+        return ResponseEntity.ok(users);
     }
 }
