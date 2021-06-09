@@ -4,6 +4,7 @@ import edu.ucsb.cs156.happiercows.ControllerTestCase;
 import edu.ucsb.cs156.happiercows.controllers.CommonsController;
 import edu.ucsb.cs156.happiercows.repositories.UserRepository;
 import edu.ucsb.cs156.happiercows.repositories.CommonsRepository;
+import edu.ucsb.cs156.happiercows.repositories.UserCommonsRepository;
 import edu.ucsb.cs156.happiercows.entities.Commons;
 import edu.ucsb.cs156.happiercows.entities.User;
 import edu.ucsb.cs156.happiercows.services.CurrentUserService;
@@ -37,6 +38,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(controllers = CommonsController.class)
 public class CommonsControllerTests extends ControllerTestCase {
+
+  @MockBean
+  UserCommonsRepository userCommonsRepository;
 
   @MockBean
   UserRepository userRepository;
