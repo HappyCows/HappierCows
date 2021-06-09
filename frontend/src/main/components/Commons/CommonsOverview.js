@@ -33,9 +33,9 @@ export default function CommonsOverview ({testCommon}){
     //     }
     // }
     
-    const day = testCommon.oneCommons[0].day
-    const endDate = testCommon.oneCommons[0].endDate
-    const totalPlayers = testCommon.oneCommons[0].totalPlayers
+    const day = testCommon.oneCommons[0].day;
+    const endDate = testCommon.oneCommons[0].endDate;
+    const totalPlayers = testCommon.oneCommons[0].totalPlayers;
 
     return (
         <Card>
