@@ -42,7 +42,7 @@ public class User {
 
   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinTable(name = "user_commons", 
-    joinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"), 
-    inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"))
     private List<Commons> commons;
 }
