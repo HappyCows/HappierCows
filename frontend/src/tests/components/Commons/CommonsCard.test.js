@@ -1,18 +1,21 @@
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import CommonsCard from "main/components/Commons/CommonsCard"; 
 import commonsFixtures from "fixtures/commonsFixtures"; 
 
 describe("CommonsCard tests", () => {
 
-    test("renders without crashing when button text is set", () => {
+    test("renders without crashing when button text is set", async () => {
+        const click = jest.fn();
         const { getByTestId } = render(
-            <CommonsCard commons = {commonsFixtures.threeCommons[0]} buttonText = {"Join"} />
+            <CommonsCard commons = {commonsFixtures.threeCommons[0]} buttonText = {"Join"}  buttonLink = {click}/>
         );
 
         const button = getByTestId("commonsCard-button");
         expect(button).toBeInTheDocument();
         expect(typeof(button.textContent)).toBe('string');
-        expect(button.textContent).toEqual('Join');  
+        expect(button.textContent).toEqual('Join');
+        fireEvent.click(button);
+        expect(click).toBeCalledTimes(1);
 
         const name = getByTestId("commonsCard-name");
         expect(name).toBeInTheDocument();
