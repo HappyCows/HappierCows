@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
-import { useCommons } from "main/utils/commons";
-import { renderHook } from '@testing-library/react-hooks'
+import { useCommons, useJoinCommons } from "main/utils/commons";
+import { act, renderHook } from '@testing-library/react-hooks'
 import mockConsole from "jest-mock-console";
 import commonsFixtures from "fixtures/commonsFixtures";
 
@@ -85,5 +85,52 @@ describe("utils/commons tests", () => {
             expect(result.current.data).toEqual(commonsFixtures.threeCommons);
 
         });
-    });    
+    });
+
+    describe("useJoinCommons tests", () => {
+        test("test useJoinCommons hits error logic on 400", async () => {
+
+            const queryClient = new QueryClient();
+            const wrapper = ({ children }) => (
+                <QueryClientProvider client={queryClient}>
+                    {children}
+                </QueryClientProvider>
+            );
+
+            var axiosMock = new AxiosMockAdapter(axios);
+            axiosMock.onPost("/api/commons/join/10").reply(400);
+
+            const onError = jest.fn();
+            const { result, waitFor } = renderHook(() => useJoinCommons({onError}), { wrapper });
+            act(() => { 
+                result.current.mutate(10); 
+            });
+            await waitFor(() => result.current.isError);
+            expect(onError).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe("useJoinCommons tests", () => {
+        test("test useJoinCommons returns correct message when api is mocked", async () => {
+
+            const queryClient = new QueryClient();
+            const wrapper = ({ children }) => (
+                <QueryClientProvider client={queryClient}>
+                    {children}
+                </QueryClientProvider>
+            );
+
+            var axiosMock = new AxiosMockAdapter(axios);
+            axiosMock.onPost("/api/commons/join/5").reply(200, commonsFixtures.threeCommons[0]);
+
+            const onSuccess = jest.fn();
+            const { result, waitFor } = renderHook(() => useJoinCommons({onSuccess}), { wrapper });
+            act(() => { 
+                result.current.mutate(5); 
+            });
+            await waitFor(() => result.current.isSuccess);
+            expect(onSuccess).toHaveBeenCalledTimes(1);
+            expect(result.current.data.data).toEqual(commonsFixtures.threeCommons[0]);
+        });
+    });
 });

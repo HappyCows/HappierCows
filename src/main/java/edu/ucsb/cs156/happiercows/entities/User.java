@@ -40,9 +40,14 @@ public class User {
   private String hostedDomain;
   private boolean admin;
 
-  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
   @JoinTable(name = "user_commons", 
     joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
     inverseJoinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"))
     private List<Commons> commons;
+
+
+  @Override public String toString() {
+    return String.format("User: id=%d email=%s",id,email);
+  }  
 }

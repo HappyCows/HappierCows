@@ -9,9 +9,11 @@ import commonsFixtures from "fixtures/commonsFixtures";
 
 describe("HomePage tests", () => {
     const queryClient = new QueryClient();
-    test("renders without crashing when lists are empty", () => {
+    
+    test("renders without crashing when lists return empty list", () => {
         var axiosMock = new AxiosMockAdapter(axios);
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+        
         axiosMock.onGet("/api/commons").reply(200, []);
         const { getByTestId } = render(
             <QueryClientProvider client={queryClient}>
@@ -46,5 +48,3 @@ describe("HomePage tests", () => {
         expect(title.textContent).toEqual('Howdy Farmer');
     });
 });
-
-
