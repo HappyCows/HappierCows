@@ -33,8 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CommonsController extends ApiController {
   @Autowired
   private CommonsRepository commonsRepository;
-  @Autowired
-  private UserRepository userRepository;
+  
   @Autowired
   private UserCommonsRepository userCommonsRepository;
 
