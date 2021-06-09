@@ -1,11 +1,9 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-// import commonsFixtures from "fixtures/commonsFixtures"; 
 
-// add cowHealth and totalWealth parameters 
-const FarmStats = ({testCommon}) => {
-    const totalWealth = testCommon.oneCommons[0].totalWealth; //shouldn't be in commons fixture but rather in user fixture 
-    const cowHealth = testCommon.oneCommons[0].cowHealth; 
+const FarmStats = ({userCommons}) => {
+   
+    console.log("userCommons=",userCommons);
     return (
         <Card>
         <Card.Header as="h5">Your Farm Stats</Card.Header>
@@ -15,13 +13,13 @@ const FarmStats = ({testCommon}) => {
                 [ADD PIC HERE] 
             </Card.Text>
             <Card.Text>
-                Total Wealth: ${totalWealth}
+                Total Wealth: ${userCommons?.totalWealth}
             </Card.Text>
             <Card.Text>
                 [ADD PIC HERE] 
             </Card.Text>
             <Card.Text>
-                Cow Health: {cowHealth}%
+                Cow Health: {userCommons?.cowHealth}%
             </Card.Text>
         </Card.Body>
         </Card>

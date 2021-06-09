@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import { action } from "@storybook/addon-actions";
-import CommonsOverview from "main/components/Commons/CommonsOverveiw";
+import CommonsOverview from "main/components/Commons/CommonsOverview";
 import {currentUserFixtures} from "fixtures/currentUserFixtures"; 
 import commonsFixtures from "fixtures/commonsFixtures"; 
 
@@ -15,6 +15,6 @@ The announcement box for a specific commons.
 
 <Canvas>
   <Story name="uncontrolled">
-    <CommonsOverview common = {commonsFixtures}/>
+    <CommonsOverview commons={commonsFixtures.oneCommons[0]} />
   </Story>
 </Canvas>
