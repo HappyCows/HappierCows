@@ -18,8 +18,8 @@ const AdminCreateCommonsPage = () => {
             },
             onError: (error) => {
                 addToast(`Error creating commons: ${error?.response?.data?.message}`, { appearance: 'error' });
-                console.log("onError Function Called", JSON.stringify(error));
-                console.log("error.response.data: ",error.response.data)
+                //console.log("onError Function Called", JSON.stringify(error));
+                //console.log("error.response.data: ",error.response.data)
             }
         }
     )
