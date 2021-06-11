@@ -110,5 +110,27 @@ public class CommonsControllerTests extends ControllerTestCase {
     assertTrue(commons.getUsers().contains(u));
   }
 
+  @WithMockUser(roles={"ADMIN"})
+  @Test
+  public void deleteUserFromCommonsTest() throws Exception {
+    User u = User.builder().build();
+    Long userId = u.getId();
+
+    Commons commons = Commons.builder().name("TestCommons").users(new ArrayList<>()).build();
+    Long commonsId = commons.getId();
+
+    commons.getUsers().add(u);
+
+    String apiString = String.format("/api/commons/%o/users/%o",commonsId,userId);  
+
+    commonsRepository.save(commons);
+    MvcResult response = mockMvc
+        .perform(delete(apiString).with(csrf()).contentType(MediaType.APPLICATION_JSON)
+            .characterEncoding("utf-8")).andExpect(status().isNoContent()).andReturn();
+
+    String responseString = response.getResponse().getContentAsString();
+
+    assertEquals(responseString.length(), 0);
+  }
   
 }
