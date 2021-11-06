@@ -69,13 +69,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
 
       authorities.forEach(authority -> {
-        // log.info("********** authority={}", authority);
+        log.info("********** authority={}", authority);
         mappedAuthorities.add(authority);
         if (OAuth2UserAuthority.class.isInstance(authority)) {
           OAuth2UserAuthority oauth2UserAuthority = (OAuth2UserAuthority) authority;
 
           Map<String, Object> userAttributes = oauth2UserAuthority.getAttributes();
-          // log.info("********** userAttributes={}", userAttributes);
+          log.info("********** userAttributes={}", userAttributes);
 
           String email = (String) userAttributes.get("email");
           if (isAdmin(email)) {
