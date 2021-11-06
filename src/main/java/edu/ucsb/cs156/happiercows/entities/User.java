@@ -46,7 +46,6 @@ public class User {
     inverseJoinColumns = @JoinColumn(name = "commons_id", referencedColumnName = "id"))
     private List<Commons> commons;
 
-
   @Override public String toString() {
     return String.format("User: id=%d email=%s",id,email);
   }  
