@@ -17,6 +17,8 @@ RUN node --version
 RUN npm --version
 
 COPY src /home/app/src
+COPY frontend /home/app/frontend
+COPY lombok.config /home/app
 COPY pom.xml /home/app
 
 RUN mvn -B -Pproduction -DskipTests -f /home/app/pom.xml clean package
