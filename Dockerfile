@@ -18,7 +18,7 @@ RUN npm --version
 
 COPY src /home/app/src
 COPY pom.xml /home/app
-ENV PRODUCTION=true
-RUN mvn -f /home/app/pom.xml clean package
+
+RUN mvn -B -Pproduction -DskipTests -f /home/app/pom.xml clean package
 
 ENTRYPOINT ["java","-jar","/home/app/target/happiercows-1.0.0.jar"]
