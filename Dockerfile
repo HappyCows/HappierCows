@@ -17,5 +17,17 @@ RUN npm --version
 
 COPY src /home/app/src
 COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml clean spring-boot:run
+RUN mvn -f /home/app/pom.xml clean package
 
+
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package
+
+#
+# Package stage
+#
+FROM openjdk:17-jre-slim
+COPY --from=build /home/app/target/happiercows-1.0.0.jar /usr/local/lib/happiercows-1.0.0.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/usr/local/lib/happiercows-1.0.0.jar"]
